@@ -12,7 +12,7 @@ function App() {
     <Layout>
       <Sider
         breakpoint="lg"
-        collapsedWidth="0"
+        // collapsedWidth="0"
         onBreakpoint={(broken) => {
           console.log(broken);
         }}
