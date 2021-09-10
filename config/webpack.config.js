@@ -411,6 +411,11 @@ module.exports = function (webpackEnv) {
                 ],
 
                 plugins: [
+                  //添加此代码实现antd的按需加载
+                  ['import', {  // 导入一个插件
+                    libraryName: 'antd',   // 暴露的库名
+                    style: 'css' // 直接将ants样式文件动态编译成行内样式插入，就不需要每次都导入
+                  }],
                   [
                     require.resolve('babel-plugin-named-asset-import'),
                     {
@@ -474,6 +479,7 @@ module.exports = function (webpackEnv) {
               exclude: cssModuleRegex,
               use: getStyleLoaders({
                 importLoaders: 1,
+                modules: false,
                 sourceMap: isEnvProduction
                   ? shouldUseSourceMap
                   : isEnvDevelopment,
@@ -683,6 +689,7 @@ module.exports = function (webpackEnv) {
         // See https://github.com/cra-template/pwa/issues/13#issuecomment-722667270
         maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
       }),
+
       // TypeScript type checking
       useTypeScript &&
       new ForkTsCheckerWebpackPlugin({

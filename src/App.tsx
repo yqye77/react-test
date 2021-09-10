@@ -1,19 +1,57 @@
-import React from "react";
+import { Layout, Menu } from "antd";
+import {
+  UploadOutlined,
+  UserOutlined,
+  VideoCameraOutlined,
+} from "@ant-design/icons";
+
+const { Header, Content, Footer, Sider } = Layout;
 
 function App() {
   return (
-    <div className="container bg-white  dark:bg-gray-800">
-      <section className="sidebar">侧边导航栏</section>
-      <section className="main">
-        <header className="header">
-          <span className="username text-blue-50">Hi, 安歌</span>
-        </header>
-        <div className="wrapper flex justify-center items-center">主体内容</div>
-        <footer className="footer">
-          <span className="copyright">Copyright@2019 安歌</span>
-        </footer>
-      </section>
-    </div>
+    <Layout>
+      <Sider
+        breakpoint="lg"
+        collapsedWidth="0"
+        onBreakpoint={(broken) => {
+          console.log(broken);
+        }}
+        onCollapse={(collapsed, type) => {
+          console.log(collapsed, type);
+        }}
+      >
+        <div className="logo" />
+        <Menu theme="dark" mode="inline" defaultSelectedKeys={["4"]}>
+          <Menu.Item key="1" icon={<UserOutlined />}>
+            nav 1
+          </Menu.Item>
+          <Menu.Item key="2" icon={<VideoCameraOutlined />}>
+            nav 2
+          </Menu.Item>
+          <Menu.Item key="3" icon={<UploadOutlined />}>
+            nav 3
+          </Menu.Item>
+          <Menu.Item key="4" icon={<UserOutlined />}>
+            nav 4
+          </Menu.Item>
+        </Menu>
+      </Sider>
+      <Layout>
+        <Header
+          className="site-layout-sub-header-background"
+          style={{ padding: 0 }}
+        />
+        <Content style={{ margin: "24px 16px 0" }}>
+          <div
+            className="site-layout-background"
+            style={{ padding: 24, minHeight: 360 }}
+          >
+            content
+          </div>
+        </Content>
+        <Footer style={{ textAlign: "center" }}>yyq@2021</Footer>
+      </Layout>
+    </Layout>
   );
 }
 
